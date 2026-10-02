@@ -267,6 +267,7 @@ const PROJECT_DATA = [
 // ══════════════════════════════════════════════════════════════
 function ProjectDetail({ project, C, onBack }) {
   const [activeImg, setActiveImg] = useState(0);
+  const [imageFailed, setImageFailed] = useState(false);
   const [lightbox, setLightbox] = useState(null);
 
   // Lock body scroll while this page is open
@@ -374,14 +375,15 @@ function ProjectDetail({ project, C, onBack }) {
               <img
                 src={project.screens[activeImg].src}
                 alt={project.screens[activeImg].caption}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                onError={e => { e.currentTarget.style.display = "none"; }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: imageFailed ? "none" : "block" }}
+                onError={() => setImageFailed(true)}
               />
-              {/* Fallback placeholder shown if image fails */}
-              <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: C.text3, fontSize: "0.85rem", pointerEvents: "none" }}>
-                <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem", opacity: 0.3 }}>🖼</div>
-                <div style={{ opacity: 0.4, textAlign: "center", padding: "0 2rem" }}>{project.screens[activeImg].caption}</div>
-              </div>
+              {imageFailed && (
+                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: C.text3, fontSize: "0.85rem", pointerEvents: "none" }}>
+                  <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem", opacity: 0.3 }}>🖼</div>
+                  <div style={{ opacity: 0.4, textAlign: "center", padding: "0 2rem" }}>{project.screens[activeImg].caption}</div>
+                </div>
+              )}
               {/* Zoom hint */}
               <div style={{ position: "absolute", top: 10, right: 10, background: "rgba(0,0,0,0.55)", color: "#fff", fontSize: "0.7rem", padding: "3px 8px", borderRadius: 6, backdropFilter: "blur(4px)" }}>
                 🔍 Click to zoom
@@ -398,7 +400,10 @@ function ProjectDetail({ project, C, onBack }) {
               {project.screens.map((scr, i) => (
                 <button
                   key={i}
-                  onClick={() => setActiveImg(i)}
+                  onClick={() => {
+                    setImageFailed(false);
+                    setActiveImg(i);
+                  }}
                   style={{
                     width: 80, height: 52, padding: 0, border: "none",
                     borderRadius: 8, overflow: "hidden", cursor: "pointer",
