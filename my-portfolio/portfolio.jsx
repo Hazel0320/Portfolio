@@ -25,7 +25,11 @@ import fab3d3 from "./src/assets/fabrication3d/fab3d3.png";
 import fa1 from "./src/assets/fixedasset/fa1.png";
 import fa2 from "./src/assets/fixedasset/fa2.png";
 import fa3 from "./src/assets/fixedasset/fa3.png";
-
+// ── P3-EPTC Viewer ──
+import p3_1 from "./src/assets/p3eptc/p3_1.png";
+import p3_2 from "./src/assets/p3eptc/p3_2.png";
+import p3_3 from "./src/assets/p3eptc/p3_3.png";
+import p3_4 from "./src/assets/p3eptc/p3_4.png";
 
 // ══════════════════════════════════════════════════════════════
 // ── THEME TOKENS ─────────────────────────────────────────────
@@ -321,6 +325,34 @@ const PROJECT_DATA = [
       "Physical inventory count mode for annual asset verification",
     ],
     impact: "Replaced scattered Excel-based asset tracking with a centralized database and cut annual physical inventory preparation from days of manual consolidation to a single CSV export.",
+  },
+    {
+    id: "p3eptc",
+    icon: "📷",
+    iconBg: "rgba(245,158,11,0.1)",
+    type: "Web System",
+    name: "P3-EPTC Viewer",
+    shortDesc: "Scan-to-view document system with live camera barcode/QR scanning, OCR fallback, file viewing, and a built-in barcode & QR generator.",
+    stack: ["ASP.NET", "C#", "ASPX", "JavaScript", "SQL Server", "ZXing", "Tesseract.js"],
+    screens: [
+      { src: p3_1, caption: "Live Scanner — real-time camera-based barcode/QR detection; a successful scan instantly redirects the user to the View tab." },
+      { src: p3_2, caption: "OCR Fallback Scanning — when the live camera scan is unavailable, the system switches to OCR to detect and read barcodes/QR codes from captured images." },
+      { src: p3_3, caption: "Barcode & QR Generator — generates scannable barcodes and QR codes that can be printed and attached to physical items." },
+      { src: p3_4, caption: "View Tab — after scanning, all files linked to the scanned barcode/QR are displayed for viewing." },
+    ],
+    definition: `P3-EPTC Viewer is an internal ASP.NET Web Forms application that connects physical barcoded/QR-coded items to their digital files. Users scan a code using the device camera — live scanning first, with an automatic fallback to OCR-based detection — and the system instantly redirects them to a View tab showing all files linked to that code. It also includes a barcode and QR generator for producing new scannable labels, and role-based restrictions that control who can upload files and who can only view.`,
+    purpose: `Retrieving documents for physical items previously meant manually searching records by code. This system turns any camera-equipped device into a scanner: point at the barcode or QR, and the linked files open immediately. The OCR fallback guarantees scanning still works on devices or conditions where live camera detection fails, so file retrieval never hits a dead end.`,
+    features: [
+      "Live camera barcode/QR scanner — real-time detection directly in the browser",
+      "Automatic OCR fallback — converts to OCR-based scanning when live detection is unavailable",
+      "Auto-redirect to View tab on successful scan — zero-click file access",
+      "View tab — displays all files/documents linked to the scanned code",
+      "Role-based restrictions — uploaders can attach files, while restricted users are view-only",
+      "Barcode generator — produce scannable barcodes for physical items",
+      "QR code generator — create QR labels for items and locations",
+      "Built with ASP.NET Web Forms (ASPX / ASPX.CS) and SQL Server backend",
+    ],
+    impact: "Turned code-based document retrieval into a single scan — eliminating manual searching and making linked files accessible from any camera-equipped device, with the OCR fallback ensuring scanning works even when the live camera fails.",
   },
 ];
 
