@@ -17,6 +17,14 @@ import pm3 from "./src/assets/preventive/pm3.png";
 import pm4 from "./src/assets/preventive/pm4.png";
 import android2 from "./src/assets/androids/android2.png";                                                                                                                                                                                                                                                               
 import android3 from "./src/assets/androids/android3.png";
+// ── Fabrication 3D Viewer ──
+import fab3d1 from "./src/assets/fabrication3d/fab3d1.png";
+import fab3d2 from "./src/assets/fabrication3d/fab3d2.png";
+import fab3d3 from "./src/assets/fabrication3d/fab3d3.png";
+// ── Fixed Asset Inventory ──
+import fa1 from "./src/assets/fixedasset/fa1.png";
+import fa2 from "./src/assets/fixedasset/fa2.png";
+import fa3 from "./src/assets/fixedasset/fa3.png";
 
 
 // ══════════════════════════════════════════════════════════════
@@ -259,6 +267,60 @@ const PROJECT_DATA = [
 
     impact:
       "Improved accessibility to the IMPEX System by enabling employees to monitor shipment information and perform essential tasks through a mobile application, reducing dependency on desktop workstations.",
+  },
+    {
+    id: "fab3d",
+    icon: "🧊",
+    iconBg: "rgba(59,130,246,0.1)",
+    type: "Web System",
+    name: "Fabrication 3D Viewer",
+    shortDesc: "Interactive 3D visualization of fabricated jigs and parts, allowing engineers to inspect designs before fabrication.",
+    stack: ["Three.js", "React Three Fiber", "JavaScript", "ASP.NET", "SQL Server"],
+    screens: [
+      { src: fab3d1, caption: "3D Viewer — interactive orbit/zoom/pan view of a fabricated jig model loaded in the browser." },
+      { src: fab3d2, caption: "Part Explorer — model tree panel listing components with select-and-highlight in the 3D scene." },
+      { src: fab3d3, caption: "Measurement & Dimensions — overlaid dimensions and section view for pre-fabrication review." },
+    ],
+    definition: `The Fabrication 3D Viewer is a web-based application that renders fabricated jig and part models in interactive 3D directly in the browser. It allows the Production Engineering team to visually inspect jig designs, orientations, and dimensions before and during the fabrication process — complementing the Fabrication Request System workflow.`,
+    purpose: `Previously, engineers relied on static 2D screenshots and paper drawings to review jig designs, which made orientation, fit, and clearance issues easy to miss. The 3D Viewer eliminates this by giving everyone an interactive, rotatable, zoomable model — no CAD software or special license needed on the reviewer's machine.`,
+    features: [
+      "Interactive 3D scene with orbit, pan, and zoom controls",
+      "Model tree panel — select a component to auto-focus and highlight it in the scene",
+      "Wireframe / solid / exploded view toggle",
+      "Measurement overlays and section views for dimension checking",
+      "Loads standard model formats (e.g., GLTF/GLB, OBJ, STL)",
+      "Embedded directly into the Fabrication Request System, linked per request record",
+      "Responsive layout — works on office desktops and shared inspection stations",
+    ],
+    impact: "Reduced design misinterpretation before fabrication and cut down rework caused by unclear 2D references.",
+  },
+    {
+    id: "fixedasset",
+    icon: "🏢",
+    iconBg: "rgba(16,185,129,0.1)",
+    type: "Web System",
+    name: "Fixed Asset Inventory System",
+    shortDesc: "Company-wide fixed asset tracking with depreciation monitoring and one-click CSV report export in a fixed accounting layout.",
+    stack: ["ASP.NET", "C#", "SQL Server", "HTML", "CSS", "JavaScript"],
+    screens: [
+      { src: fa1, caption: "Asset Dashboard — master list of all registered fixed assets with category, department, location, custodian, and status badges." },
+      { src: fa2, caption: "Asset Registration — add/edit form with auto-generated asset code, acquisition date, cost, useful life, and depreciation setup." },
+      { src: fa3, caption: "CSV Report Export — generated report following a fixed accounting layout: Asset Code, Description, Category, Location, Acquisition Date, Cost, Accumulated Depreciation, Book Value, and Status columns." },
+    ],
+    definition: `The Fixed Asset Inventory System is an internal web application that centralizes the tracking of company fixed assets — machinery, equipment, tools, and IT hardware. Each asset record holds its identification, category, physical location, custodian, acquisition details, depreciation info, and current status, with a built-in CSV report export that follows the company's standard accounting report layout.`,
+    purpose: `Asset records were previously maintained in scattered Excel files, making annual physical inventory counts slow and reconciliation with Accounting tedious. This system provides a single source of truth for every asset, and its CSV export produces a report with a fixed column layout that Accounting can use directly — no manual reformatting.`,
+    features: [
+      "Asset registration with auto-generated asset codes (FA-YYMM-NNN format)",
+      "Category, department, location, and custodian assignment per asset",
+      "Straight-line depreciation tracking with computed book value",
+      "Status lifecycle: Active → In Use → For Repair → For Disposal → Disposed",
+      "One-click CSV report export with fixed layout — headers, column order, and formatting matched to the Accounting department's template",
+      "Filters by category, department, location, status, and acquisition year",
+      "Per-asset history / audit trail (transfers, custody changes, disposal)",
+      "Dashboard summary — total asset count, total acquisition cost, and per-category breakdown",
+      "Physical inventory count mode for annual asset verification",
+    ],
+    impact: "Replaced scattered Excel-based asset tracking with a centralized database and cut annual physical inventory preparation from days of manual consolidation to a single CSV export.",
   },
 ];
 
